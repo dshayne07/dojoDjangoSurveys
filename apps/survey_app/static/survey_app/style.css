@@ -1,0 +1,12 @@
+body{
+    background-color:gainsboro;
+}
+.card-block{
+    padding-top:20px;
+}
+.container{
+    margin-top:20px;
+}
+.card{
+    padding-bottom:10px;
+}
