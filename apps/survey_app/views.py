@@ -9,7 +9,6 @@ def process(request):
     else:
         request.session['counter'] += 1
     request.session['post'] = request.POST
-    print request.session['post']
     return redirect("/survey_app/result/")
 
 def result(request):

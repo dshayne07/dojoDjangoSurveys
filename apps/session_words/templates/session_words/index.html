@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Session Words</title>
+</head>
+<body style="width:970px; margin-left:auto; margin-right:auto;">
+    <div id="left" style="float:left; margin-left:100px;">
+        <h2>Add a new word</h2>
+        <form method="POST" action="/session_words/process/">
+            {% csrf_token %}
+            <input type="test" name="word" placeholder="Enter New Word" /><br><br>
+            <label>Choose Color<br><br>
+            <label>Red <input type="radio" name="color" value="red" checked="checked"></label><br>
+            <label>Green <input type="radio" name="color" value="green"></label><br>
+            <label>Blue <input type="radio" name="color" value="blue"></label><br><br>
+            <label><input type="checkbox" name="big"> show in BIG fonts!</label><br><br>
+            <input type="submit" value="Add to session"><br>
+        </form>
+    </div>
+
+    <div id="right" style="float:left; margin-left:100px; width:400px; border-left:solid 2px black; padding-left:100px;">
+        <h1 style="display:inline-block; float:left;">Your words</h1> <a style="display:inline-block; float:right; color:black; margin-top:28px;" href="/session_words/clear/"><button>Clear</button></a>
+        <div style="clear:both"> </div>
+        {% if request.session.list %}
+            {% for inputs in request.session.list %}
+            <p style="display:inline-block; color:{{inputs.color}}; {% if inputs.big == 'on' %}font-size:30px;{% endif %}">{{inputs.word}}</p> Posted on {{inputs.day}} at {{inputs.time}}<br>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
